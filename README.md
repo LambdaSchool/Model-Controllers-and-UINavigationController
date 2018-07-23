@@ -11,15 +11,12 @@
 
 ## Objective 1 - Use UINavigationController to display data hierarchically
 
-### Lecture
-
-One of the most common forms of navigation in an iOS app is called "Master-Detail". This means there is some sort of master list of information that is displayed to the user, which is usually achieved by using a table view or a collection view, and to see details about something in that list, you must navigate to a more detailed view.
-
 Even if you've never heard of the master-detail pattern, you have surely used it before. For example, the iOS Contacts app shows a list of the contacts on your phone. If you want to see more information about the contact than their name however, you tap on the cell in the master list and it will bring you into a more detailed view that shows more information about that specific contact. 
 
 The way we can implement this navigation between these two views is by using a few things. The first is a navigation controller. Navigation controllers (`UINavigationController`) create and manage what is called a "navigation stack". When you navigate from a master view to a detail view, the detail view is placed on top of the master view in a stack. More views could be placed on top of the detail view to create a larger stack. 
 
-Using navigation controllers allows for us to navigate (hence the name) between our view controllers much easier. They will automatically create the back button you see at the top-left of the screen when you go into a detail view that easily lets the user go back to the previous view.
+Using navigation controllers allows for us to navigate (hence the name) between our view controllers much easier. They will automatically create the back button you see at the top-left of the screen when you go into a detail view that easily lets the 
+go back to the previous view.
 
 To use a navigation controller, you have to "embed" a view controller in the stack view. So if we embed the master list of contacts in a navigation controller, it becomes the "root view controller", which simply means it's the first view controller in the navigation stack. If you try this out in a storyboard, you will notice it will add a gray bar at the top of the view controller. This is called a navigation bar (`UINavigationBar`). Navigation bars give the user a "physical" representation of the navigation stack that they can interact with, while the navigation controller manages the navigation stack in the background based on how the user interacts with the navigation bar.
 
@@ -35,11 +32,9 @@ To add a navigation controller in a storyboard, there are two methods:
 
 ## Objective 2 - Implement a segue between a table view cell and a detail view controller
 
-### Lecture
-
 The second thing needed in order to create use the master-detail, or any navigation pattern for that matter is called a "segue" (pronounced "seg-way"). Segues create a link between two view controllers that let you navigate from one to the other. The view controller the segue starts from is the "source" view controller, and the view controller the segue goes to is the "destination" view controller.
 
-Segues are like a one way plane ticket to somewhere. You can fly to the destination, but you can't come back. For this reason, navigation controllers are especially helpful because they will automatically give the user a way to go back to the view they came from without us having to write any extra code. 
+Segues are like a one way plane ticket to somewhere. You can fly to the destination, but you can't come back. For this reason, navigation controllers are especially helpful because they will automatically give the user a way to go back to the view they came from without us having to write any extra code.
 
 Segues are represented by the arrows in-between view controllers. The way that you create a segue from one view controller to another is by holding the control key, clicking from a UI element that users can interact with such as a button or a table view cell and dragging to the view controller you wish to segue to. It will pull up a contextual menu that will ask what kind of segue you want to create:
 
@@ -54,17 +49,13 @@ Show segues will make the destination view controller have a push (slide in from
 
 ## Objective 3 - Use the UINavigationItem API to customize navigation bar
 
-### Lecture
-
-If we want to add UI elements to a navigation bar, we can't actually add them directly. Instead we use navigation items. 
+If we want to add UI elements to a navigation bar, we can't actually add them directly. Instead we use navigation items.
 
 Navigation items (`UINavigationItem`) allow us to customize what is displayed on a navigation bar. For example, we can give it a title that describes what the view controller is, like "Contact List" or "Edit Contact". We can also add buttons to the navigation item, which will then place them on the navigation bar for us.
 
 It should be noted that you can set up navigation controllers, segues, and navigation items both in Interface Builder or programmatically.
 
 ## Objective 4 - Understand and explain the purpose of the MVC design pattern
-
-### Lecture
 
 In iOS development, we use archetectural design patterns in order to structure our code in a way that promotes easy scalability and reusability. The most commonly used design pattern in iOS development is called MVC. _MVC_ stands for "Model-View-Controller". Each part of MVC has a specific job that helps keep our code clean while being scalable and reusable:
 
@@ -73,12 +64,10 @@ In iOS development, we use archetectural design patterns in order to structure o
 3. _Controllers_ manage the flow of our data in an application. It's the job of controllers to pass information between models and views. Controllers are separated into two specific sub-controllers:
   - View Controllers: You should already be familiar with view controllers. Take table view controllers as an example: a table view doesn't know what information to be displayed in its cells, but in the table view controller subclass, we give it that information by implementing the `numberOfRowsInSection` and `cellForRowAt` functions. This is an example of passing data from a view controller to a view.
   - Model Controllers: The job of a model controller is to handle any interaction with your model objects.
-  
+
 This is meant to be a very general overview of MVC, and we will go into more depth with each part of it during this lesson.
 
 ## Objective 5 - Understand and explain the purpose of the model layer in MVC
-
-### Lecture
 
 Let's take a closer look at the model part of MVC. As stated before, we use model objects to represent real-life data in our application. This makes it easy for us to keep related information together.
 
@@ -86,7 +75,7 @@ We'll take the earlier example of a user profile and see how we would create a m
 
 ``` Swift
 struct UserProfile {
-    
+
     let username: String
     let email: String
     var age: Int
@@ -98,8 +87,6 @@ Note: The `UserProfile` object could be a class as well, we would just have to a
 That's it for a simple model object. Generally, there is little else you will need to add to one. It really is simply a representation of data. Models are "dumb" in the sense that they can't do much themselves, which is where model controllers come in.
 
 ## Objective 6 - Understand and explain the purpose of the controller layer in MVC
-
-### Lecture
 
 Earlier we learned that controllers manage the flow of data, and are separated into two different kinds of controllers. You should already be familiar with view controllers and their responsibilities. We're going to focus on model controllers right now.
 
@@ -114,11 +101,11 @@ If a user fills out their information on a profile creation screen then taps a s
 
 ``` Swift
 class UserProfileController {
-    
+
     // Create
-    
+
     func createUserProfileWith(username: String, email: String, age: Int) {
-        
+
         let profile = UserProfile(username: username, email: email, age: age)
     }
 }
@@ -130,16 +117,16 @@ Read means that we need something that the rest of the application will be able 
 
 ``` Swift
 class UserProfileController {
-    
+
     // Create
-    
+
     func createUserProfileWith(username: String, email: String, age: Int) {
-        
+
         let profile = UserProfile(username: username, email: email, age: age)
     }
-    
+
     // Read
-    
+
     var userProfiles: [UserProfile] = []
 }
 ```
@@ -148,18 +135,18 @@ So now, we have a place that can store our `UserProfile` objects, and we can acc
 
 ``` Swift
 class UserProfileController {
-    
+
     // Create
-    
+
     func createUserProfileWith(username: String, email: String, age: Int) {
-        
+
         let profile = UserProfile(username: username, email: email, age: age)
-        
+
         userProfiles.append(profile)
     }
-    
+
     // Read
-    
+
     var userProfiles: [UserProfile] = []
 }
 ```
@@ -172,12 +159,10 @@ If we wanted to make a "delete" function, we would simply find the profile in th
 
 This is a lot to take in, so don't worry if you don't completely understand it. The good thing about learning MVC is that we will use it in every project so you will have plenty of practice to let it soak in.
 
-
 ## Objective 7 - Understand and explain the purpose of the view layer in MVC
 
-### Lecture 
+Views are the UI elements that the user sees on the screen. The job of views are simply to show information to the user, and relay back to us when the user interacts with the UI in any way. 
 
-Views are the UI elements that the user sees on the screen. The job of views are simply to show information to the user, and relay back to us when the user interacts with the UI in any way. For example, when the user fills out their information on the screen then taps the save button, that button will tell us that it was tapped, allowing us to do something at that time. If we are using storyboards, the way the button will alert us is through an `@IBAction` we create. 
+As an example of the views relaying user interaction, when the user fills out their information on the screen then taps the save button, that button will tell us that it was tapped, allowing us to do something at that time. If we are using storyboards the way the button will alert us is through an `@IBAction` we create. 
 
 We can also give views information to display, as you've seen before. Table views are an example of this. We could have a profile view controller where the user can go to see their `UserProfile` information. The view controller would have `@IBOutlets` that give us access to the different views in the view controller. This allows us to take the `UserProfile` information and pass it to the views. 
-
